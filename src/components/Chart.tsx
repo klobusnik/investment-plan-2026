@@ -4,10 +4,16 @@ import { CalculatedPlatformPlan } from "../strategies/types";
 export interface ChartProps {
 	currency: string;
 	data: CalculatedPlatformPlan[];
+	inflation?: number;
+	showReal?: boolean;
 }
 
-export default function Chart({ currency, data }: ChartProps) {
+export default function Chart({ currency, data, inflation = 0, showReal = false }: ChartProps) {
 	if (!data.length) return null;
+
+	// Deflate each monthly point to today's purchasing power when the real-terms view is on
+	const toDisplay = (values: number[]) =>
+		showReal && inflation ? values.map((v, i) => Math.round(v / (1 + inflation / 100) ** (i / 12))) : values;
 
 	// Create year/month labels
 	const labels = [
@@ -17,7 +23,7 @@ export default function Chart({ currency, data }: ChartProps) {
 
 	const datasets = data.map((plan) => ({
 		label: plan.platform.name,
-		data: plan.portfolioValues,
+		data: toDisplay(plan.portfolioValues),
 		borderColor: plan.platform.color,
 		backgroundColor: `${plan.platform.color}70`,
 	}));
@@ -36,7 +42,7 @@ export default function Chart({ currency, data }: ChartProps) {
 						...datasets,
 						{
 							label: "Invested Amount",
-							data: data[0].investedValues,
+							data: toDisplay(data[0].investedValues),
 							borderColor: "#d0d0d0",
 							backgroundColor: "#d0d0d070",
 							borderDash: [5, 5],
