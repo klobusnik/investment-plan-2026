@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generator: Adobe Illustrator 24.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.2 10.2" style="enable-background:new 0 0 72.2 10.2;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#111111;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#009FDF;}
+</style>
+<title>Logo - white Copy</title>
+<desc>Created with Sketch.</desc>
+<g id="Logo---white-Copy">
+	<path id="Path" class="st0" d="M27.8,5.1c0,3.8-2.5,4.9-5.8,4.9h-3.2V0.2H22C25.2,0.2,27.8,1.3,27.8,5.1L27.8,5.1z"/>
+	<path id="Path_1_" class="st1" d="M21.1,2.1v5.9h1c1.7,0,3.3-0.4,3.3-3c0-2.6-1.5-3-3.3-3H21.1z"/>
+	<polygon id="Fill-3" class="st0" points="36.5,0.2 36.5,2.2 31.3,2.2 31.3,3.9 36.2,3.9 36.2,6 31.3,6 31.3,8 36.5,8 36.5,10    28.9,10 28.9,0.2  "/>
+	<g id="Clip-6">
+	</g>
+	<path id="Fill-5" class="st0" d="M44.8,3.2c-0.2-0.7-0.9-1.3-2.2-1.3c-1.4,0-2.5,1.1-2.5,3.1c0,2.1,1,3.2,2.6,3.2   c1.1,0,2.2-0.4,2.2-1.7V6.4h-2.4V4.5h4.7V10h-1.8l-0.1-1.1c-0.6,0.9-1.6,1.3-3,1.3c-2.9,0-4.7-2-4.7-5.1c0-3.1,2-5.1,5-5.1   c2.2,0,4,1.1,4.4,3.2H44.8z"/>
+	<g id="Clip-9">
+	</g>
+	<polygon id="Fill-8" class="st0" points="48.9,10 51.2,10 51.2,0.2 48.9,0.2  "/>
+	<path id="Path_2_" class="st0" d="M55.2,6.3V10h-2.3V0.2h3.8c2.6,0,4.5,0.6,4.5,3c0,1.5-0.8,2.3-1.9,2.7l2.4,4.1h-2.7l-2.1-3.7   H55.2z"/>
+	<path id="Path_3_" class="st1" d="M55.2,4.3h1.5c1.1,0,1.9-0.2,1.9-1.1c0-0.9-0.8-1.1-1.9-1.1h-1.5V4.3z"/>
+	<path id="Path_4_" class="st0" d="M62,5.1C62,2,64.1,0,67.1,0c3,0,5.1,2,5.1,5.1c0,3.1-2.1,5.1-5.1,5.1C64.1,10.2,62,8.2,62,5.1"/>
+	<path id="Path_5_" class="st1" d="M69.8,5.1c0-2.1-1.2-3.2-2.6-3.2c-1.4,0-2.6,1.1-2.6,3.2s1.2,3.2,2.6,3.2   C68.6,8.3,69.8,7.2,69.8,5.1"/>
+	<polygon id="Fill-12" class="st2" points="0,4.1 16.4,4.1 16.4,0.2 0,0.2  "/>
+	<polygon id="Fill-13" class="st2" points="0,10 16.4,10 16.4,6 0,6  "/>
+</g>
+<script xmlns="">{
+            document.currentScript.dataset.injected = true;
+            const o = JSON.parse(decodeURIComponent(escape(atob('eyJ1c2VyQWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBMaW51eCB4ODZfNjQ7IHJ2OjEyOC4wKSBHZWNrby8yMDEwMDEwMSBGaXJlZm94LzEyOC4wIiwiYXBwVmVyc2lvbiI6IjUuMCAoWDExKSIsInBsYXRmb3JtIjoiTGludXgiLCJ2ZW5kb3IiOiIiLCJwcm9kdWN0IjoiR2Vja28iLCJ1c2VyQWdlbnREYXRhIjoiW2RlbGV0ZV0iLCJvc2NwdSI6IkxpbnV4IHg4Nl82NCIsInByb2R1Y3RTdWIiOiIyMDEwMDEwMSIsImJ1aWxkSUQiOiIyMDE4MTAwMTAwMDAwMCJ9'))));
+
+            if (o.userAgentDataBuilder) {
+              const v = new class NavigatorUAData {
+                #p;
+
+                constructor({p, ua}) {
+                  this.#p = p;
+
+                  const version = p.browser.major;
+                  const name = p.browser.name === 'Chrome' ? 'Google Chrome' : p.browser.name;
+
+                  this.brands = [{
+                    brand: name,
+                    version
+                  }, {
+                    brand: 'Chromium',
+                    version
+                  }, {
+                    brand: 'Not=A?Brand',
+                    version: '24'
+                  }];
+
+                  this.mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+
+                  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Platform
+                  this.platform = 'Unknown';
+                  if (p.os &amp;&amp; p.os.name) {
+                    const name = p.os.name.toLowerCase();
+                    if (name.includes('mac')) {
+                      this.platform = 'macOS';
+                    }
+                    else if (name.includes('debian')) {
+                      this.platform = 'Linux';
+                    }
+                    else {
+                      this.platform = p.os.name;
+                    }
+                  }
+                }
+                toJSON() {
+                  return {
+                    brands: this.brands,
+                    mobile: this.mobile,
+                    platform: this.platform
+                  };
+                }
+                getHighEntropyValues(hints) {
+                  if (!hints || Array.isArray(hints) === false) {
+                    return Promise.reject(Error("Failed to execute 'getHighEntropyValues' on 'NavigatorUAData'"));
+                  }
+
+                  const r = this.toJSON();
+
+                  if (hints.includes('architecture')) {
+                    r.architecture = this.#p?.cpu?.architecture || 'x86';
+                  }
+                  if (hints.includes('bitness')) {
+                    r.bitness = '64';
+                  }
+                  if (hints.includes('model')) {
+                    r.model = '';
+                  }
+                  if (hints.includes('platformVersion')) {
+                    r.platformVersion = this.#p?.os?.version || '10.0.0';
+                  }
+                  if (hints.includes('uaFullVersion')) {
+                    r.uaFullVersion = this.brands[0].version;
+                  }
+                  if (hints.includes('fullVersionList')) {
+                    r.fullVersionList = this.brands;
+                  }
+                  return Promise.resolve(r);
+                }
+              }(o.userAgentDataBuilder);
+
+              navigator.__defineGetter__('userAgentData', () =&gt; {
+                return v;
+              });
+            }
+            delete o.userAgentDataBuilder;
+
+            for (const key of Object.keys(o)) {
+              if (o[key] === '[delete]') {
+                delete Object.getPrototypeOf(window.navigator)[key];
+              }
+              else {
+                navigator.__defineGetter__(key, () =&gt; {
+                  if (o[key] === 'empty') {
+                    return '';
+                  }
+                  return o[key];
+                });
+              }
+            }
+          }</script></svg>

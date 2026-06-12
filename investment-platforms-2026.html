@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Investing in the Czech Republic — Platform Guide 2026</title>
+<style>
+	:root {
+		--bg: #0e1116;
+		--panel: #161b22;
+		--panel-2: #1c232d;
+		--border: #2a323d;
+		--text: #e6edf3;
+		--muted: #9aa7b4;
+		--accent: #4cc38a;
+		--accent-2: #58a6ff;
+		--warn: #f0a93b;
+		--bad: #f06b6b;
+		--good: #4cc38a;
+		--ok: #f0c33b;
+		--radius: 12px;
+		--mono: ui-monospace, "SF Mono", Menlo, monospace;
+	}
+	* { box-sizing: border-box; }
+	html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+	body {
+		margin: 0;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		background: var(--bg);
+		color: var(--text);
+		line-height: 1.55;
+		font-size: 15px;
+	}
+	a { color: var(--accent-2); text-decoration: none; }
+	a:hover { text-decoration: underline; }
+	h1, h2, h3 { line-height: 1.2; }
+	.wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+	/* nav */
+	nav {
+		position: sticky; top: 0; z-index: 50;
+		background: rgba(14,17,22,.88);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid var(--border);
+	}
+	nav .wrap { display: flex; align-items: center; gap: 6px; height: 56px; overflow-x: auto; }
+	nav .brand { font-weight: 700; margin-right: 16px; white-space: nowrap; color: var(--accent); }
+	nav a { color: var(--muted); padding: 6px 10px; border-radius: 8px; white-space: nowrap; font-size: 14px; }
+	nav a:hover { color: var(--text); background: var(--panel-2); text-decoration: none; }
+
+	/* hero */
+	header.hero { padding: 48px 0 28px; border-bottom: 1px solid var(--border); }
+	header.hero h1 { font-size: 34px; margin: 0 0 8px; }
+	header.hero p.sub { color: var(--muted); font-size: 17px; max-width: 760px; margin: 0; }
+	.scenario {
+		display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px;
+	}
+	.scenario .pill {
+		background: var(--panel); border: 1px solid var(--border); border-radius: 999px;
+		padding: 8px 14px; font-size: 13px; color: var(--text);
+	}
+	.scenario .pill b { color: var(--accent); }
+
+	section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+	section h2 { font-size: 25px; margin: 0 0 4px; }
+	section .lead { color: var(--muted); margin: 0 0 22px; max-width: 820px; }
+
+	/* takeaway callouts */
+	.takeaways { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 14px; }
+	.card {
+		background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+		padding: 16px 18px;
+	}
+	.card h3 { margin: 0 0 6px; font-size: 16px; }
+	.card p { margin: 0; color: var(--muted); font-size: 14px; }
+	.card.accent { border-left: 3px solid var(--accent); }
+	.card.warn { border-left: 3px solid var(--warn); }
+	.card.info { border-left: 3px solid var(--accent-2); }
+
+	/* controls */
+	.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+	.controls input[type=search] {
+		background: var(--panel); border: 1px solid var(--border); color: var(--text);
+		padding: 8px 12px; border-radius: 8px; min-width: 200px; font-size: 14px;
+	}
+	.filterbtn {
+		background: var(--panel); border: 1px solid var(--border); color: var(--muted);
+		padding: 7px 12px; border-radius: 999px; cursor: pointer; font-size: 13px; transition: .15s;
+	}
+	.filterbtn:hover { color: var(--text); }
+	.filterbtn.active { background: var(--accent); color: #06210f; border-color: var(--accent); font-weight: 600; }
+
+	/* table */
+	.tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+	table.cmp { border-collapse: collapse; width: 100%; min-width: 880px; font-size: 13.5px; }
+	table.cmp th, table.cmp td { text-align: left; padding: 11px 13px; border-bottom: 1px solid var(--border); vertical-align: top; }
+	table.cmp thead th {
+		background: var(--panel-2); color: var(--muted); font-weight: 600; cursor: pointer;
+		position: sticky; top: 0; user-select: none; white-space: nowrap;
+	}
+	table.cmp thead th:hover { color: var(--text); }
+	table.cmp thead th .arr { opacity: .4; font-size: 11px; }
+	table.cmp tbody tr.row { cursor: pointer; transition: background .12s; }
+	table.cmp tbody tr.row:hover { background: var(--panel); }
+	table.cmp tbody tr.row td:first-child { font-weight: 600; white-space: nowrap; }
+	.tag { display:inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; border:1px solid var(--border); color: var(--muted); white-space: nowrap; }
+	.tag.discount { color:#9fd5ff; border-color:#234; }
+	.tag.robo { color:#b8a6ff; border-color:#342a4d; }
+	.tag.bank { color:#ffd59f; border-color:#4d3f23; }
+	.tag.advisor { color:#ff9fb5; border-color:#4d2330; }
+	.rate { font-weight: 700; padding: 2px 8px; border-radius: 6px; font-size: 12px; }
+	.rate.good { background: rgba(76,195,138,.15); color: var(--good); }
+	.rate.ok { background: rgba(240,195,59,.15); color: var(--ok); }
+	.rate.poor { background: rgba(240,107,107,.15); color: var(--bad); }
+	.yes { color: var(--good); font-weight: 700; }
+	.no { color: var(--bad); font-weight: 700; }
+	.detailrow td { background: var(--panel); border-bottom: 2px solid var(--accent); }
+	.detailgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; padding: 6px 4px 10px; }
+	@media(max-width:720px){ .detailgrid { grid-template-columns: 1fr; } }
+	.detailgrid h4 { margin: 0 0 6px; font-size: 13px; color: var(--accent-2); text-transform: uppercase; letter-spacing: .04em; }
+	.detailgrid ul { margin: 0; padding-left: 18px; }
+	.detailgrid ul.pros li { color: #cfe9da; }
+	.detailgrid ul.cons li { color: #f0d2d2; }
+	.detailgrid .meta { font-size: 13px; color: var(--muted); }
+	.detailgrid .meta b { color: var(--text); }
+	.fullspan { grid-column: 1 / -1; }
+
+	/* calculator */
+	.calc { display: grid; grid-template-columns: 320px 1fr; gap: 26px; }
+	@media(max-width:820px){ .calc { grid-template-columns: 1fr; } }
+	.calc .inputs label { display:block; font-size: 13px; color: var(--muted); margin: 14px 0 4px; }
+	.calc .inputs .val { color: var(--accent); font-weight: 700; }
+	.calc input[type=range] { width: 100%; accent-color: var(--accent); }
+	.calc .bars { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+	.bar-row { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; }
+	.bar-row .lbl { font-size: 13px; color: var(--muted); }
+	.bar-row .lbl b { display:block; color: var(--text); }
+	.bar { height: 34px; border-radius: 7px; background: var(--accent); display:flex; align-items:center; justify-content:flex-end; padding-right: 10px; color:#06210f; font-weight:700; font-size:13px; transition: width .4s; white-space: nowrap; min-width: 60px; }
+	.bar.t1 { background:#4cc38a; } .bar.t2 { background:#58a6ff; } .bar.t3 { background:#f0c33b; } .bar.t4 { background:#f06b6b; }
+	.calc .note { margin-top: 16px; font-size: 13px; color: var(--muted); }
+
+	/* accordion glossary */
+	.glossgroup { margin-bottom: 22px; }
+	.glossgroup > h3 { font-size: 15px; color: var(--accent); text-transform: uppercase; letter-spacing:.05em; margin: 0 0 10px; }
+	details.acc {
+		background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+		margin-bottom: 8px; overflow: hidden;
+	}
+	details.acc summary {
+		cursor: pointer; padding: 12px 16px; font-weight: 600; list-style: none; display:flex; justify-content: space-between; align-items:center;
+	}
+	details.acc summary::-webkit-details-marker { display:none; }
+	details.acc summary::after { content:"+"; color: var(--muted); font-size: 18px; }
+	details.acc[open] summary::after { content:"–"; }
+	details.acc summary:hover { color: var(--accent); }
+	details.acc .body { padding: 0 16px 14px; color: var(--muted); font-size: 14px; }
+	details.acc .body .eg { margin-top: 8px; padding: 8px 12px; background: var(--panel-2); border-radius: 8px; border-left: 2px solid var(--accent-2); color: var(--text); font-size: 13px; }
+
+	/* tax cards / short term */
+	.taxgrid { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+	.bignum { font-size: 28px; font-weight: 800; color: var(--accent); }
+	.stbar { display:inline-block; font-weight:700; font-size:12px; padding:2px 8px; border-radius:6px; }
+
+	table.simple { border-collapse: collapse; width:100%; font-size:13.5px; }
+	table.simple th, table.simple td { padding:10px 12px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; }
+	table.simple thead th { background: var(--panel-2); color: var(--muted); }
+	table.simple tr.win td { background: rgba(76,195,138,.08); }
+
+	.changelog { display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+	.change { background: var(--panel); border:1px solid var(--border); border-left:3px solid var(--accent-2); border-radius:10px; padding:14px 16px; }
+	.change .yr { font-size:12px; color:var(--accent); font-weight:700; letter-spacing:.05em; }
+	.change h4 { margin:4px 0 6px; font-size:15px; }
+	.change p { margin:0; color:var(--muted); font-size:13.5px; }
+
+	footer { padding: 34px 0 60px; color: var(--muted); font-size: 13px; }
+	footer .disclaimer { background: var(--panel); border:1px solid var(--warn); border-radius:10px; padding:14px 16px; margin-bottom:18px; color:#f0dcb8; }
+	footer .src { columns: 2; column-gap: 30px; }
+	@media(max-width:680px){ footer .src { columns:1; } }
+	.muted { color: var(--muted); }
+	.hl { color: var(--accent); font-weight:600; }
+</style>
+</head>
+<body>
+
+<nav>
+	<div class="wrap">
+		<span class="brand">📈 CZ Investing 2026</span>
+		<a href="#start">Your situation</a>
+		<a href="#platforms">Platforms</a>
+		<a href="#calc">Fee impact</a>
+		<a href="#concepts">Concepts</a>
+		<a href="#tax">Czech tax & DIP</a>
+		<a href="#short">Short-term (1–2 yr)</a>
+		<a href="#changes">What changed</a>
+	</div>
+</nav>
+
+<header class="hero">
+	<div class="wrap">
+		<h1>Investing from the Czech Republic — Platform Guide</h1>
+		<p class="sub">A from-scratch guide to ETF investing platforms available to a Czech resident, with current 2025/2026 fees, a beginner glossary, the Czech tax rules that actually matter, and where to park money for just 1–2 years. Built for someone earning CZK with little prior knowledge of investing.</p>
+		<div class="scenario">
+			<span class="pill">🏠 Lives in <b>Czech Republic</b>, earns <b>CZK</b></span>
+			<span class="pill">💰 Invests <b>~500,000 CZK / year</b></span>
+			<span class="pill">📅 Data current as of <b>June 2026</b></span>
+			<span class="pill">🎯 Long-term ETF investing <b>+ short-term parking</b></span>
+		</div>
+	</div>
+</header>
+
+<!-- ============ YOUR SITUATION ============ -->
+<section id="start">
+	<div class="wrap">
+		<h2>Start here — the 6 things that matter most</h2>
+		<p class="lead">If you read nothing else, read this. The rest of the page backs up each point.</p>
+		<div class="takeaways">
+			<div class="card accent">
+				<h3>1. Fees are the enemy you control</h3>
+				<p>You can't control markets, but you control fees. The gap between a <b>0.2%</b> ETF and a <b>2%</b> advisor product can quietly eat <b>a third to a half</b> of your final pot over decades. Play with the <a href="#calc">fee calculator</a>.</p>
+			</div>
+			<div class="card accent">
+				<h3>2. Buy Irish (IE00…) accumulating ETFs</h3>
+				<p>An <b>accumulating, Ireland-domiciled UCITS ETF</b> (ISIN starts <span class="mono">IE00</span>) reinvests dividends automatically — no yearly dividend to declare. Held <b>3+ years</b> the gain is <b>tax-free</b>. That's near-zero tax and near-zero paperwork.</p>
+			</div>
+			<div class="card info">
+				<h3>3. The 3-year time test is your superpower</h3>
+				<p>Hold securities <b>≥ 3 years</b> → capital gain is <b>exempt from Czech income tax</b>. From 2026 there's no upper limit for securities. This single rule shapes everything below.</p>
+			</div>
+			<div class="card info">
+				<h3>4. Use DIP only for money you'll lock to age 60</h3>
+				<p><b>DIP</b> deducts up to <b>48,000 CZK/yr</b> from your tax base (saves ~7,200 CZK), but it's <b>locked until age 60 AND 10 years</b>. Great for a slice; the rest goes in a normal account where the 3-year rule already makes it tax-free <em>and</em> flexible.</p>
+			</div>
+			<div class="card warn">
+				<h3>5. Short-term money ≠ stocks</h3>
+				<p>Need the cash in <b>1–2 years</b>? Stocks can drop 30% at the worst moment, and a sale under 3 years is taxable. Use a savings account, term deposit, or the <b>tax-free state bond</b> instead. See <a href="#short">short-term</a>.</p>
+			</div>
+			<div class="card warn">
+				<h3>6. Watch the hidden FX fee</h3>
+				<p>ETFs trade in USD/EUR, so your CZK gets converted — and the platform skims a spread <b>each way</b>. At 500k/yr this matters: it ranges from <b>0.002%</b> (IBKR) to <b>1.5–2%</b> (Patria, Revolut over limit).</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ============ PLATFORMS ============ -->
+<section id="platforms">
+	<div class="wrap">
+		<h2>Platform comparison</h2>
+		<p class="lead">13 platforms a Czech investor can realistically use, June 2026. Click any row to expand pros, cons, safety, and what changed recently. Click a column header to sort, or filter by type.</p>
+		<div class="controls">
+			<input type="search" id="search" placeholder="Search platform…" />
+			<button class="filterbtn active" data-f="all">All</button>
+			<button class="filterbtn" data-f="discount">Discount brokers</button>
+			<button class="filterbtn" data-f="robo">Robo-advisors</button>
+			<button class="filterbtn" data-f="bank">Bank brokers</button>
+			<button class="filterbtn" data-f="advisor">Advisor-led</button>
+		</div>
+		<div class="tablewrap">
+			<table class="cmp" id="cmp">
+				<thead>
+					<tr>
+						<th data-k="name">Platform <span class="arr">↕</span></th>
+						<th data-k="typeLabel">Type <span class="arr">↕</span></th>
+						<th data-k="etf">ETF trading cost <span class="arr">↕</span></th>
+						<th data-k="fxNum">FX fee <span class="arr">↕</span></th>
+						<th data-k="ongoing">Ongoing / annual <span class="arr">↕</span></th>
+						<th data-k="dip">DIP <span class="arr">↕</span></th>
+						<th data-k="stRank">Short-term <span class="arr">↕</span></th>
+					</tr>
+				</thead>
+				<tbody id="cmpbody"></tbody>
+			</table>
+		</div>
+		<p class="muted" style="font-size:12.5px;margin-top:10px;">Fees are snapshots (June 2026) and change often — verify on the provider's price list before acting. Interest rates are variable and central-bank-linked. "Protection" = investor-compensation / deposit-guarantee scheme covering the entity you contract with.</p>
+	</div>
+</section>
+
+<!-- ============ FEE CALCULATOR ============ -->
+<section id="calc">
+	<div class="wrap">
+		<h2>Fee impact calculator</h2>
+		<p class="lead">The same money, the same market — only the annual fee differs. See how much a "small" fee costs you over time. Defaults to your 500,000 CZK/year plan.</p>
+		<div class="calc">
+			<div class="inputs">
+				<label>Annual investment: <span class="val" id="vAmt">500,000</span> CZK</label>
+				<input type="range" id="amt" min="50000" max="2000000" step="50000" value="500000" />
+				<label>Years invested: <span class="val" id="vYrs">25</span></label>
+				<input type="range" id="yrs" min="1" max="40" step="1" value="25" />
+				<label>Gross market return: <span class="val" id="vRet">7.0</span>% / year</label>
+				<input type="range" id="ret" min="2" max="12" step="0.5" value="7" />
+				<p class="note">Each bar is a real fee level on this page: <b>0.2%</b> ≈ DIY ETF broker (XTB/T212/IBKR) · <b>0.6%</b> ≈ Portu at scale · <b>1.0%</b> ≈ robo / Fondee · <b>2.0%</b> ≈ advisor-led active fund (Partners-style). FX and entry fees are <em>extra</em> on top.</p>
+			</div>
+			<div class="bars" id="bars"></div>
+		</div>
+	</div>
+</section>
+
+<!-- ============ CONCEPTS ============ -->
+<section id="concepts">
+	<div class="wrap">
+		<h2>Concepts, explained from zero</h2>
+		<p class="lead">Plain-English definitions with tiny examples. Open the ones you need.</p>
+
+		<div class="glossgroup">
+			<h3>Funds &amp; ETFs</h3>
+			<details class="acc"><summary>What is an ETF?</summary><div class="body">A single thing you buy like a share on an exchange that holds hundreds or thousands of companies at once. Buy one ETF and you instantly own a tiny slice of everything inside it — no stock-picking needed.<div class="eg">Buy one share of a "world" ETF for ~3,000 CZK → you own a sliver of Apple, Microsoft, Nestlé and ~1,500 other firms.</div></div></details>
+			<details class="acc"><summary>Index fund vs active fund</summary><div class="body">An <b>index fund</b> just copies a published list (an index) — no manager picking stocks, so fees are tiny. An <b>active fund</b> pays a manager to try to beat the market. Over the long run, low-cost index funds beat most active funds <em>after fees</em>.</div></details>
+			<details class="acc"><summary>Accumulating vs distributing (important for Czechs)</summary><div class="body"><b>Distributing</b> pays dividends to you as cash. <b>Accumulating</b> reinvests them inside the fund automatically. For Czech investors <b>accumulating is usually better</b>: no dividend payout means nothing to declare or tax each year — you only deal with tax when you sell, and after 3 years that sale is tax-free.</div></details>
+			<details class="acc"><summary>TER (expense ratio)</summary><div class="body">The fund's yearly running cost, taken automatically from its value (you never get a bill). Broad index ETF ≈ 0.07–0.22%/yr; active bank fund ≈ 1.5–2.5%.<div class="eg">0.20% TER on 500,000 CZK = ~1,000 CZK/year, quietly deducted.</div></div></details>
+			<details class="acc"><summary>S&amp;P 500 vs MSCI World vs FTSE All-World</summary><div class="body">These are <b>indexes</b> (the lists ETFs copy). <b>S&amp;P 500</b> = 500 biggest US firms (US-only, tech-heavy). <b>MSCI World</b> = ~1,400 firms across 23 developed countries (no emerging markets). <b>FTSE All-World</b> = ~3,700 firms, developed + emerging — the broadest one-fund choice.</div></details>
+			<details class="acc"><summary>Where you buy: broker vs robo vs bank fund vs advisor</summary><div class="body"><b>Broker</b> (XTB, IBKR, DEGIRO, Fio): you pick and buy yourself — cheapest. <b>Robo-advisor</b> (Portu, Fondee): answer a questionnaire, it builds &amp; auto-manages a portfolio — convenient, ~0.5–1%/yr. <b>Bank fund</b>: easy to start but usually worst value (high TER + entry fee). <b>Advisor-led</b> (Edward, Partners): personal advice but often big up-front + ongoing fees — read the fee sheet carefully.</div></details>
+		</div>
+
+		<div class="glossgroup">
+			<h3>Fees &amp; how they eat returns</h3>
+			<details class="acc"><summary>The fee types, one line each</summary><div class="body"><b>Entry / front-load:</b> one-time cut when you pay in (3% on 500k = 15,000 CZK gone). <b>Annual management:</b> yearly % a robo/manager charges. <b>Fund TER:</b> the fund's own internal cost (stacks on top of management). <b>FX / conversion:</b> spread taken converting CZK↔USD/EUR, each way. <b>Exit:</b> cut when you sell. <b>Per-trade commission:</b> fixed/% per order — hurts small frequent buys. <b>Inactivity:</b> charged if you don't trade. <b>Custody:</b> small yearly fee just to hold assets. <b>Spread:</b> invisible gap between buy/sell price.</div></details>
+			<details class="acc"><summary>Why 1% vs 0.2% is a huge deal</summary><div class="body">A fee doesn't cost you "1%" — it compounds against you every year. Over 30 years an extra ~0.8%/yr quietly eats roughly <b>a fifth of your final pot</b>. This is why TER is the single most important number to minimise. The <a href="#calc">calculator above</a> shows it live.</div></details>
+		</div>
+
+		<div class="glossgroup">
+			<h3>Growth, risk &amp; behaviour</h3>
+			<details class="acc"><summary>Compounding</summary><div class="body">Your returns start earning their own returns. 500,000 CZK at 7% → 535,000 next year; then 7% is earned on 535,000, not 500,000. A small head-start snowballs enormously over decades.</div></details>
+			<details class="acc"><summary>Expected return &amp; volatility</summary><div class="body"><b>Expected return</b> is a realistic long-run average (~6–8%/yr nominal for global stocks), not a promise — single years swing from −40% to +30%. <b>Volatility</b> = how violently the value bounces. Stocks are volatile; savings accounts are not.</div></details>
+			<details class="acc"><summary>Volatility drag</summary><div class="body">Losses hurt more than equal gains help (−50% needs +100% to recover). So bumpy returns compound to <em>less</em> than the simple average. Rough rule: real growth ≈ average − (volatility² ÷ 2).</div></details>
+			<details class="acc"><summary>Risk vs time horizon &amp; diversification</summary><div class="body">The longer you can leave money untouched, the more stock risk you can take — you can ride out crashes. Money needed in 1–2 years should take almost no risk. <b>Diversification</b> (a broad ETF spreads across thousands of firms) means one bankruptcy barely dents you.</div></details>
+			<details class="acc"><summary>Regular investing (DCA) vs lump sum</summary><div class="body"><b>Dollar-cost averaging</b> = invest a fixed amount monthly, smoothing the price you pay and removing "did I buy at the top?" stress. <b>Lump sum</b> = invest it all at once; statistically wins more often (markets rise more than fall). With 500,000 CZK/year, ~42,000 CZK/month is a sensible default.</div></details>
+		</div>
+
+		<div class="glossgroup">
+			<h3>Inflation, currency &amp; dividends</h3>
+			<details class="acc"><summary>Real vs nominal return (inflation)</summary><div class="body"><b>Nominal</b> = the headline number; <b>real</b> = after inflation (actual purchasing power). Czech inflation peaked &gt;15% in 2022–23 and has since cooled toward ČNB's ~2% target. 6% nominal − 2.5% inflation ≈ 3.5% real. Cash earning less than inflation is silently losing value.</div></details>
+			<details class="acc"><summary>Currency risk &amp; FX drift for a CZK investor</summary><div class="body">Your salary is CZK but a world ETF holds USD/EUR assets. If CZK strengthens, your CZK value drops even if the ETF rose in dollars. <b>FX drift</b> is the slow long-term trend (if CZK tends to strengthen, that's a mild headwind). Over decades it mostly washes out but adds short-term wobble.</div></details>
+			<details class="acc"><summary>CZK-hedged ETFs</summary><div class="body">Versions that cancel out currency moves so you get the market return without the CZK/USD wobble. They cost a bit more (higher TER) and the hedge isn't free; most long-term investors skip hedging on equities and accept the noise.</div></details>
+			<details class="acc"><summary>Dividend tax &amp; W-8BEN</summary><div class="body">The US withholds 15% on dividends to foreigners — but 30% if you haven't filed a <b>W-8BEN</b> form. Crucially, with an <b>Irish ETF the fund handles this for you</b> (only 15% internally), so you usually don't file W-8BEN yourself.</div></details>
+			<details class="acc"><summary>Fund domicile: Irish (IE00) vs US — prefer Irish</summary><div class="body">Where the fund is registered. <b>Irish UCITS (ISIN IE00…)</b> beats US-domiciled for Czechs: only 15% internal US dividend tax (vs 30%), accumulating versions need no yearly declaration, and no US estate-tax exposure above ~$60k. Most US-domiciled ETFs aren't even legally sellable to EU retail anyway. <b>Rule of thumb: prefer IE00.</b></div></details>
+			<details class="acc"><summary>Liquidity &amp; the emergency fund</summary><div class="body"><b>Liquidity</b> = how fast you can turn it into cash without loss. Keep an <b>emergency fund</b> of ~3–6 months' expenses in instant-access cash before investing. Never put money you'll need within ~2–3 years into stocks.</div></details>
+		</div>
+	</div>
+</section>
+
+<!-- ============ TAX ============ -->
+<section id="tax">
+	<div class="wrap">
+		<h2>Czech tax &amp; DIP — what actually matters</h2>
+		<p class="lead">Verified for the 2025/2026 rules (Ministry of Finance, ČNB). This is general information, not tax advice — confirm your own case.</p>
+		<div class="taxgrid">
+			<div class="card accent">
+				<h3>⏳ Time test — 3 years</h3>
+				<div class="bignum">0% tax</div>
+				<p>Hold securities (shares, ETFs, fund units) <b>≥ 3 years</b> → capital gain is <b>exempt</b> from income tax. (Company ownership stakes: 5 years.) The cornerstone of tax-efficient investing. <b>Still in force 2026.</b></p>
+			</div>
+			<div class="card accent">
+				<h3>💯 Value test — 100,000 CZK</h3>
+				<div class="bignum">≤ 100k</div>
+				<p>If your <b>total gross proceeds</b> from selling securities in a year are <b>≤ 100,000 CZK</b>, it's exempt <em>regardless</em> of holding period. Note: gross sale proceeds, not profit. Threshold unchanged for 2025/26.</p>
+			</div>
+			<div class="card info">
+				<h3>🔝 The 40M cap</h3>
+				<div class="bignum">gone (2026)</div>
+				<p>A 40,000,000 CZK/yr cap on the time-test exemption was added in <b>2025</b>, then <b>removed for securities from 1 Jan 2026</b> (kept only for crypto). Irrelevant unless you sell &gt;40M in a year.</p>
+			</div>
+			<div class="card info">
+				<h3>📊 Tax rates</h3>
+				<div class="bignum">15% / 23%</div>
+				<p>Taxable gains and dividends are added to your income: <b>15%</b> up to ~1.68M CZK total, <b>23%</b> above. Most investors pay 15% on anything taxable.</p>
+			</div>
+		</div>
+
+		<h3 style="margin:28px 0 10px;">DIP — Dlouhodobý investiční produkt (the retirement wrapper)</h3>
+		<details class="acc" open><summary>How the DIP tax break works</summary><div class="body">Deduct your own DIP contributions from your tax base up to <b>48,000 CZK/year</b> → saves up to <b>7,200 CZK</b> (15% × 48,000). This 48k cap is <b>shared</b> across DIP + pension (penzijko) + life insurance — it's one combined ceiling, not per product.</div></details>
+		<details class="acc"><summary>Employer contributions</summary><div class="body">An employer can add up to <b>50,000 CZK/year</b> free of income tax and social/health insurance (also a shared limit across the three old-age products). Employer money does <em>not</em> eat into your own 48k personal deduction.</div></details>
+		<details class="acc"><summary>The lock-up — read before signing</summary><div class="body">To keep the benefit you must hold <b>at least 10 years AND withdraw no earlier than the year you turn 60</b> — both conditions. Break it (withdraw even 1 CZK early) and you must <b>repay all the tax relief claimed over the last 10 years</b>.</div></details>
+		<details class="acc"><summary>What qualifies &amp; who offers it</summary><div class="body">Broad: shares, ETFs, bonds, fund units, and cash held inside the DIP. Offered by banks, brokers and investment companies — incl. <b>Patria (best-rated), Portu, Fondee, Fio, Conseq, Česká spořitelna, MONETA</b>. Among low-cost foreign DIY brokers: <b>XTB yes; Trading 212, DEGIRO, IBKR, eToro, Revolut: no.</b></div></details>
+		<details class="acc"><summary>Practical advice for a 500k/yr investor</summary><div class="body">Only ~48k of your annual contribution gets the deduction, and DIP money is locked to age 60. <b>Use DIP for the slice you're certain you won't touch before retirement</b>; invest the rest in a normal brokerage account, where the 3-year time test already makes gains tax-free <em>with full flexibility</em>.</div></details>
+		<details class="acc"><summary>Reporting foreign ETF gains/dividends (DIY)</summary><div class="body">No automatic Czech withholding on a foreign broker — you self-report. <b>Capital gains:</b> §10 (nothing owed if time/value test passes). <b>Dividends:</b> §8 gross at 15%, with foreign tax often creditable via treaty. <b>Currency:</b> convert each transaction at the ČNB rate on the trade date, or use the single annual rate — pick one method and stick to it. Accumulating Irish ETFs held 3+ years often mean <b>zero tax paperwork</b>.</div></details>
+	</div>
+</section>
+
+<!-- ============ SHORT TERM ============ -->
+<section id="short">
+	<div class="wrap">
+		<h2>Short-term: parking ~500,000 CZK for 1–2 years</h2>
+		<p class="lead">You want to put ~500k somewhere for one or two years, then take it out. <b>Do not use stock ETFs for this.</b> Here's why, and what to use instead. Everything below is driven by the <span class="hl">ČNB 2-week repo rate = 3.50%</span> (held since May 2025).</p>
+
+		<div class="card warn" style="margin-bottom:20px;">
+			<h3>⚠️ Why equity ETFs are the wrong tool here</h3>
+			<p><b>1. Volatility:</b> stocks can fall 20–40% in months — a real chance you'd sell at a loss exactly when you need the cash. <b>2. Tax:</b> selling under 3 years misses the time test, so the gain is taxable at 15% (your 500k easily blows past the 100k value test). Short-term equity gains are both risky <em>and</em> taxed.</p>
+		</div>
+
+		<div class="tablewrap">
+			<table class="simple">
+				<thead>
+					<tr><th>Option</th><th>Indicative rate (2026)</th><th>Net after tax</th><th>Liquidity</th><th>Protected?</th><th>The catch</th></tr>
+				</thead>
+				<tbody>
+					<tr class="win">
+						<td><b>🏆 State bond — Dluhopis Republiky (Flexi)</b></td>
+						<td>3.5% (resets to repo if higher)</td>
+						<td><b class="hl">3.5% — tax-free</b></td>
+						<td>Rolls every 3 months</td>
+						<td>State-backed</td>
+						<td>Subscription windows only; buy via ČSOB / Česká spořitelna. Interest <b>exempt from the 15% tax</b> — beats a 4% savings account that nets ~3.4%.</td>
+					</tr>
+					<tr>
+						<td><b>High-yield savings account</b> (spořicí účet)</td>
+						<td>~3.5–4.2% gross (top, often promo)</td>
+						<td>~3.0–3.6% (15% tax withheld)</td>
+						<td>Instant / next-day</td>
+						<td>Yes — €100,000</td>
+						<td>Top "bonus" rates are time-limited (3–6 mo), may need card use/salary, often capped at ~500k balance.</td>
+					</tr>
+					<tr>
+						<td><b>Term deposit</b> (termínovaný vklad)</td>
+						<td>~3.5% (12m), ~3.75% (24m)</td>
+						<td>~3.0–3.2%</td>
+						<td>Locked for the term</td>
+						<td>Yes — €100,000</td>
+						<td>Money locked; breaking early usually forfeits interest. Good for the part you're sure you won't touch.</td>
+					</tr>
+					<tr>
+						<td><b>Money-market / "rezerva" fund</b> (e.g. Portu Investiční rezerva)</td>
+						<td>~3.2% gross (− 0.25% fee)</td>
+						<td>~2.5%</td>
+						<td>A few business days</td>
+						<td>Cash sleeve insured €100k</td>
+						<td>Slower access than savings; use the cautious cash variant, not a bond/mixed one, for 1–2 yr money.</td>
+					</tr>
+					<tr>
+						<td><b>Short-term CZK bond ETF / gov-bond fund</b></td>
+						<td>~3–4% yield</td>
+						<td>Taxable if sold &lt;3 yr</td>
+						<td>Same-day (exchange)</td>
+						<td>Not deposit-insured</td>
+						<td>Price can dip if rates rise; for a beginner the tax-free state bond is simpler. Direct retail T-bills aren't really a thing — the Flexi state bond is the equivalent.</td>
+					</tr>
+					<tr style="opacity:.7;">
+						<td><b>❌ Equity / world ETF</b></td>
+						<td>~7% long-run avg</td>
+						<td>Taxable + volatile</td>
+						<td>Same-day</td>
+						<td>Not deposit-insured</td>
+						<td>Wrong tool for 1–2 years — see warning above.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="card accent" style="margin-top:20px;">
+			<h3>The simple plan for 500k over 1–2 years</h3>
+			<p>Split by when you'll need each chunk: the <b>tax-free Dluhopis Republiky Flexi bond (3.5%)</b> for the bulk you can leave 3+ months at a time, a <b>top savings account (~4% gross / instant access)</b> for the part you might need any day, and a <b>12-month term deposit (~3.5%)</b> for money you definitely won't touch for a year. Interest from savings/deposits has 15% tax auto-deducted by the bank (no reporting); the state bond's interest is fully tax-free.</p>
+		</div>
+	</div>
+</section>
+
+<!-- ============ CHANGES ============ -->
+<section id="changes">
+	<div class="wrap">
+		<h2>What changed since ~2023</h2>
+		<p class="lead">This guide updates a plan that's about two years old. The biggest shifts for a Czech ETF investor:</p>
+		<div class="changelog">
+			<div class="change"><div class="yr">2024 →</div><h4>DIP went mainstream</h4><p>The Dlouhodobý investiční produkt launched Jan 2024 (~116k accounts in year one). Tax deduction up to 48k/yr. Now offered by Patria, Portu, Fondee, Fio, banks — and XTB. Not by T212, DEGIRO, IBKR, eToro, Revolut.</p></div>
+			<div class="change"><div class="yr">2023–26</div><h4>Interest on idle cash became a thing</h4><p>XTB, Trading 212 (CZK ~3.7%) and IBKR (CZK ~1.7%) now pay interest on uninvested cash. DEGIRO and Saxo (on CZK) still pay 0% — a real reason to avoid them for any cash buffer.</p></div>
+			<div class="change"><div class="yr">Oct 2025</div><h4>DEGIRO overhauled ETF fees</h4><p>The old "1 free trade/ETF/month + €1" model is gone. Now a flat <b>€1/trade on ~1,600 Tradegate ETFs</b>, unlimited, connectivity fee removed. Non-Tradegate ETF commission rose €2→€3.</p></div>
+			<div class="change"><div class="yr">Apr 2025</div><h4>Patria cut fees ~80%</h4><p>New platform: US min commission $14.90 → $2.90+0.3%; EU €16.90 → €4.90+0.3%. Free recurring ETF for ČSOB clients &amp; under-30s. Built the best-rated DIP.</p></div>
+			<div class="change"><div class="yr">Jan 2025</div><h4>Revolut launched free ETF plans in CZ</h4><p>Zero-commission recurring auto-invest into 300+ EU-listed UCITS ETFs from €1. The biggest new cheap-passive entrant — but no DIP, and 2% FX above the monthly limit.</p></div>
+			<div class="change"><div class="yr">Aug 2024</div><h4>IBKR moved EU clients to Ireland</h4><p>All EU/CZ clients migrated to Interactive Brokers Ireland. Investor protection dropped from €100,000 to <b>€20,000</b> (Irish ICS) — relevant right at a 500k deposit size.</p></div>
+			<div class="change"><div class="yr">2025</div><h4>Saxo trimmed fees but added a CZK trap</h4><p>Min commission cut to $1, inactivity fee abolished, custody removed in core EU — <b>except CZ</b>, where you must opt into securities lending to reach 0% custody. CZK cash now earns 0%.</p></div>
+			<div class="change"><div class="yr">2026</div><h4>Banks got cheaper for ETFs</h4><p>Česká spořitelna cuts Xetra buys to 0.35% (min €4) from Feb 2026; Raiffeisen trades Prague stocks at 0.11%. The 40M time-test cap was removed for securities. Mar 2026: J. Safra Sarasin acquired ~71% of Saxo.</p></div>
+		</div>
+	</div>
+</section>
+
+<footer>
+	<div class="wrap">
+		<div class="disclaimer"><b>Not financial or tax advice.</b> This is an educational summary compiled from public sources in June 2026 for a general Czech-resident profile. Fees, interest rates and tax rules change frequently — verify current figures with each provider and a tax professional before acting. Interest/return figures are indicative snapshots, not promises.</div>
+		<p><b>Key sources:</b></p>
+		<div class="src">
+			<p>Ministerstvo financí ČR (mf.gov.cz) — DIP, Dluhopis Republiky, time-test changes · ČNB (cnb.cz) — repo rate, ČNB reference FX rates · Financial Administration (financnisprava.cz) · dluhopisy.gov.cz · Provider price lists: XTB, Trading 212, DEGIRO, Interactive Brokers, Saxo, eToro, Patria, Portu, Edward, Partners, Fondee, Revolut, Fio · Czech finance media: finex.cz, finparada.cz, penize.cz, mesec.cz, investicniweb.cz, e15.cz, finance.cz · Tax: KPMG/Danovky, Grant Thornton, Accace, Taxomat, NeoTax.</p>
+		</div>
+		<p class="muted" style="margin-top:18px;">Generated June 2026 · standalone file, works offline · no tracking, no external requests.</p>
+	</div>
+</footer>
+
+<script>
+// ---------- platform data ----------
+const PLATFORMS = [
+	{
+		name:"XTB", type:"discount", typeLabel:"Discount broker",
+		etf:"0% to €100k/mo, then 0.2%", fxNum:0.5, fx:"0.5% each way",
+		ongoing:"None (ETF) + fund TER", dip:"Yes", st:"Good", stRank:1,
+		cash:"CZK ~3.1% / USD ~3.4% (variable)", czk:"Yes — CZK account + multi-currency wallet",
+		auto:"Free investment plans + fractional from €10", prot:"~€22,000 (KNF, Prague branch, ČNB oversight)",
+		best:"Free ETF buying + CZK interest + DIP, with a Prague branch for support.",
+		pros:["Free ETF trading at this volume","Interest on idle CZK","Free auto-invest + fractional","CZK account + DIP + Czech branch"],
+		cons:["0.5% FX each way on USD/EUR ETFs","Inactivity fee if dormant","Tax report is raw, not a finished return","€22k protection cap"],
+		change:"Added DIP support; introduced PayPal/eWallet deposit fees (2025).",
+		url:"https://www.xtb.com/cz/ucet-a-poplatky"
+	},
+	{
+		name:"Trading 212", type:"discount", typeLabel:"Discount broker",
+		etf:"0% (free)", fxNum:0.15, fx:"0.15% each way",
+		ongoing:"None + fund TER", dip:"No", st:"Good", stRank:1,
+		cash:"CZK ~3.7% / USD ~3.3% (variable, daily)", czk:"Full CZK account + Czech CZK IBAN (free domestic deposits)",
+		auto:"Pies/AutoInvest + fractional from ~30 CZK", prot:"€20,000 (CySEC, Cyprus)",
+		best:"Simplest genuinely-free ETF buying with a Czech CZK IBAN and the highest CZK cash interest.",
+		pros:["Commission-free ETFs","Czech CZK IBAN, free domestic deposits","CZK interest ~3.7%","Pies + fractional shares"],
+		cons:["0.15% FX twice per round-trip (avoid by holding EUR)","No DIP","DIY tax conversion","€20k protection cap"],
+		change:"Added CZK interest (cut 4.0%→3.7% Jan 2025); standard card-deposit fee above small free allowance.",
+		url:"https://www.trading212.com/terms/invest"
+	},
+	{
+		name:"DEGIRO", type:"discount", typeLabel:"Discount broker",
+		etf:"€1/trade on ~1,600 Tradegate ETFs (unlimited)", fxNum:0.25, fx:"0.25% (CZK⇄EUR often free)",
+		ongoing:"€0 custody/inactivity", dip:"No", st:"Poor", stRank:3,
+		cash:"0% — none, any currency", czk:"Deposit CZK but auto-converted to EUR; can't hold CZK trading balance",
+		auto:"No auto-invest, no fractional shares", prot:"€100k cash guarantee / €20k securities (BaFin, Germany)",
+		best:"Lowest per-trade ETF cost for a long-horizon, hands-on accumulator who doesn't care about cash interest or automation.",
+		pros:["Very low ETF cost (€1/trade, no limit) since Oct 2025","Reportedly free CZK⇄EUR for CZ clients","No custody/inactivity fee","Strong BaFin regulation + €100k cash guarantee"],
+		cons:["0% interest on cash","No fractional + no auto-invest (cash drag, manual buying)","Effectively EUR-only (FX exposure)","No DIP"],
+		change:"Oct 2025: dropped the free-trade model for flat €1/trade on Tradegate ETFs.",
+		url:"https://www.degiro.com/uk/data/pdf/uk/UK_Feeschedule.pdf"
+	},
+	{
+		name:"Interactive Brokers", type:"discount", typeLabel:"Discount broker",
+		etf:"~0.05%, min €1.25 (tiered, EU)", fxNum:0.002, fx:"0.002%, min $2 (cheapest in market)",
+		ongoing:"None + fund TER", dip:"No", st:"OK", stRank:2,
+		cash:"CZK ~1.7% (on balance above ~$10k)", czk:"Multi-currency; CZK base currency + local CZK deposit rail",
+		auto:"Recurring investments + fractional from $1", prot:"€20,000 (Irish ICS — not US SIPC)",
+		best:"Cheapest FX by far and the widest universe — the power-user choice, especially for large amounts and money-market/T-bill access.",
+		pros:["Cheapest FX by far (decisive at 500k/yr)","Interest on idle CZK","Low ETF commissions + widest universe","Fractional + recurring + CZK base currency"],
+		cons:["Only €20k protection (dropped from €100k, no SIPC)","No ready-made Czech tax report","No DIP","Complex platform for a beginner"],
+		change:"Aug 2024: EU clients moved to IBKR Ireland → protection €100k → €20k.",
+		url:"https://www.interactivebrokers.com/en/pricing/commissions-stocks.php"
+	},
+	{
+		name:"Saxo Bank", type:"discount", typeLabel:"Discount broker",
+		etf:"0.08%, min $1/€2 (Classic tier)", fxNum:0.25, fx:"0.25% each way",
+		ongoing:"Custody 0.15%/yr (CZ unless securities-lending)", dip:"No", st:"Poor", stRank:3,
+		cash:"CZK 0% (interest on EUR/USD/GBP only)", czk:"Yes — holds CZK across sub-accounts, but CZK cash earns 0%",
+		auto:"AutoInvest (verify CZ) · no fractional shares", prot:"€100k cash / €20k securities (Danish FSA)",
+		best:"A licensed bank with low commissions and a Prague branch — but the CZK custody trap and 0% CZK cash hurt the fit.",
+		pros:["Licensed Danish bank (now J. Safra Sarasin-backed)","Very low commissions (from $1/€2)","Czech branch + CZ-language support","Holds CZK natively"],
+		cons:["CZK custody-fee trap (~€60/yr unless securities-lending opt-in)","0.25% FX each way","No fractional shares","CZK cash 0%; no DIP"],
+		change:"2025: min commission to $1, inactivity abolished, EU custody removed (except CZ). Mar 2026: acquired by J. Safra Sarasin.",
+		url:"https://www.home.saxo/cs-cz/rates-and-conditions/etf/commissions"
+	},
+	{
+		name:"eToro", type:"discount", typeLabel:"Discount broker",
+		etf:"$0 ETFs (stocks $1–2/trade)", fxNum:0.75, fx:"from 0.75% (USD-engine, ~1.5% round-trip)",
+		ongoing:"$10/mo inactivity after 12mo + fund TER", dip:"No", st:"Poor", stRank:3,
+		cash:"USD 2.75–3.55% (EUR cash 0%)", czk:"No CZK account — USD or EUR only",
+		auto:"Recurring + fractional + Smart Portfolios", prot:"€20,000 (CySEC, Cyprus)",
+		best:"Strong automation and zero-commission ETFs, but the USD engine + double FX layer make it a poor fit for a CZK investor.",
+		pros:["Zero-commission ETFs any size","EUR money account + free SEPA","USD cash earns 2.75–3.55%","Fractional + recurring + Smart Portfolios"],
+		cons:["USD engine → ~0.75% FX per trade (~1.5% round-trip)","New $1–$2 stock commission (2025)","No CZK, no DIP","Heavy Czech tax bookkeeping"],
+		change:"Mar 2025: added $1–2 stock commission. May 2025: Nasdaq IPO. FX base 0.75%.",
+		url:"https://www.etoro.com/trading/fees/"
+	},
+	{
+		name:"Patria Finance", type:"bank", typeLabel:"Bank broker (KBC/ČSOB)",
+		etf:"$2.90+0.3% (US); recurring 0.8% — free for ČSOB/under-30", fxNum:1.5, fx:"1.5% (the weak point)",
+		ongoing:"Custody ~0.05%/yr + fund TER", dip:"Yes", st:"Poor", stRank:3,
+		cash:"~0.01% CZK default (EUR/USD depozitum ~1%)", czk:"Full Czech broker — CZK account, free CZK deposits/withdrawals",
+		auto:"Regular investing from 500 CZK/mo + fractional ETFs", prot:"€20,000 (ČNB / Garanční fond OCP)",
+		best:"The CZK-native, ČSOB-backed choice with the best-rated DIP — once you accept the 1.5% FX on foreign ETFs.",
+		pros:["Genuinely CZK-native (free CZK deposits, Czech tax docs/support)","ČNB + KBC/ČSOB safety","Best-in-class DIP (48k deduction, 0.4% recurring)","Cheap/free recurring ETF + fractional"],
+		cons:["1.5% FX — the big drag on foreign-ETF buys","Per-trade commissions higher than zero-commission fintechs","Custody fee exists; cash interest negligible","Best free deal gated behind being a ČSOB client"],
+		change:"Apr 2025: fees cut ~80%, new platform. 2024: launched award-winning DIP.",
+		url:"https://cdn.patria.cz/Sazebnik-PD.en.pdf"
+	},
+	{
+		name:"Portu", type:"robo", typeLabel:"Robo-advisor (WOOD & Co)",
+		etf:"Included in the management fee", fxNum:0.5, fx:"0.5% (usually bundled in the all-in fee)",
+		ongoing:"1.0%→0.4% banded (floor 0.24% w/ loyalty)", dip:"Yes", st:"Good", stRank:1,
+		cash:"Investiční rezerva CZK ~3.2% (−0.25% fee)", czk:"CZK + EUR accounts; CZK fully supported",
+		auto:"Fully automated + fractional by design", prot:"€20k securities / €100k cash (ČNB)",
+		best:"Hands-off all-in-one for a beginner — one fee covers buying, FX and rebalancing — plus a usable short-term CZK cash product.",
+		pros:["Single all-in fee, no per-trade/entry/exit","Fee falls at scale (cross 500k→0.8%, fixation→0.24%)","CZK-native + DIP + strong short-term 'Investiční rezerva'","ČNB-regulated, €20k+€100k protection"],
+		cons:["Management fee (0.6–1.0%) well above DIY brokers, stacks on TER","Low fee requires locking the horizon (loyalty discount)","0.5% FX pricier than T212/DEGIRO","Not cheapest for large lump sums vs self-managed"],
+		change:"May 2024: volume bands added; Jan 2024: DIP; 2024–25: Investiční rezerva cash product. >55bn CZK AUM.",
+		url:"https://www.portu.cz/kolik-to-stoji/"
+	},
+	{
+		name:"Fondee", type:"robo", typeLabel:"Robo-advisor",
+		etf:"Included", fxNum:0.2, fx:"Low (inside ETF purchases)",
+		ongoing:"0.9% (DIP 0.5%) + ~0.15% TER", dip:"Yes", st:"OK", stRank:2,
+		cash:"Conservative (bond-heavy) portfolio option", czk:"Yes — CZK accounts, ČNB-regulated, EU UCITS ETFs",
+		auto:"Fully automated robo + fractional", prot:"€20,000 (ČNB)",
+		best:"A simpler, cheaper-than-advisor robo with a genuine conservative option and a low-cost DIP at 0.76% all-in.",
+		pros:["~10x cheaper than advisor products","Fully passive/automated","DIP at ~0.76% all-in","Genuine conservative/bond portfolio option"],
+		cons:["0.9% still above DIY ETF (~0.15%)","Fewer features than Portu","No individual stock picking","Robo questionnaire constrains customization"],
+		change:"Added DIP; conservative portfolios usable for shorter horizons.",
+		url:"https://www.fondee.cz/cenik"
+	},
+	{
+		name:"Revolut", type:"discount", typeLabel:"Discount broker / app",
+		etf:"0% on recurring ETF plans", fxNum:2.0, fx:"Free to monthly limit, then 2% (min €1)",
+		ongoing:"Plan subscription fee + fund TER", dip:"No", st:"OK", stRank:2,
+		cash:"—", czk:"Multi-currency incl. CZK, but ETFs are EUR/USD → FX applies",
+		auto:"Recurring plans + fractional from €1", prot:"EU broker level (Revolut Securities Europe, Lithuania)",
+		best:"Slick free recurring ETF plans for small amounts — but no DIP and a 2% FX cliff make it weak for large CZK conversions.",
+		pros:["Genuinely free recurring ETF plans","Tiny €1 minimum + fractional","Slick app","Broad EU UCITS ETF list (tax-friendly)"],
+		cons:["No DIP (loses the CZK tax break)","2% FX above the fair-usage limit","Not a Czech entity — less local tax support","Plan tiers gate free manual trades"],
+		change:"Jan 2025: launched zero-commission ETF plans across the EEA incl. Czechia.",
+		url:"https://www.revolut.com/cs-CZ/etfs/"
+	},
+	{
+		name:"Fio e-Broker", type:"bank", typeLabel:"Bank broker (Czech)",
+		etf:"Prague 0.35% (min 40 CZK); US $7.95 flat", fxNum:0.3, fx:"Bank FX (varies)",
+		ongoing:"€0 annual + fund TER", dip:"Yes", st:"OK", stRank:2,
+		cash:"Linked CZK current account", czk:"Strongest CZK story — Czech bank, direct Prague access, CZ tax docs",
+		auto:"No fractional, no true auto-invest (manual)", prot:"€20,000 (ČNB)",
+		best:"Best for Czech stocks/dividends and lump-sum holds in a fully CZK Czech bank — poor for small regular foreign-ETF buys.",
+		pros:["Best for Czech (BCPP) stocks & dividends","Czech bank + ČNB + Czech tax docs","No annual fee; DIP available","CZK-native with integrated current account"],
+		cons:["Per-trade fees high for frequent/foreign ETF buying","No fractional shares","No auto-invest","Min fees hurt small regular orders"],
+		change:"Stable; remains the Czech-bank broker of choice for domestic equities.",
+		url:"https://www.fio.cz/akcie-investice/e-broker"
+	},
+	{
+		name:"Edward Invest", type:"advisor", typeLabel:"Advisor-led",
+		etf:"Via managed ETFs (+0.10–0.39% TER)", fxNum:0.4, fx:"0.4% (sell-side / liquidation)",
+		ongoing:"Entry 5%→2% banded + annual 1.89%→0.99% (DIP −0.1%)", dip:"Yes", st:"Poor", stRank:3,
+		cash:"—", czk:"Yes — advisory product in CZK; underlying ETFs USD/EUR",
+		auto:"Yes (advisory, regular contributions + rebalancing)", prot:"ČNB-regulated investment firm; assets in custody",
+		best:"Full personal advice, rebalancing and reporting bundled — at a fee level only worth it over many years, never short-term.",
+		pros:["Full advisory + rebalancing + reporting bundled","Tiered fee falls as the portfolio grows","DIP shaves 0.10%","Transparent published fee schedule"],
+		cons:["~4–5% prepaid entry fee is a big upfront drag","1.79–1.89% annual is high vs robo/DIY","Fund TER stacks on top","Optional performance fee can add up to 25%"],
+		change:"Jan 2025: restructured fees (VAT-efficient 'PPP' service, lower bands, optional performance fee).",
+		url:"https://edwardinvest.cz/docs/jake-poplatky-klient-plati/"
+	},
+	{
+		name:"Partners", type:"advisor", typeLabel:"Advisor-led",
+		etf:"Active funds, ~1.8% TER", fxNum:0, fx:"In CZK funds (no FX path)",
+		ongoing:"~1% platform + ~1.8% fund TER (≈2.8% all-in)", dip:"Yes", st:"Poor", stRank:3,
+		cash:"—", czk:"Yes — CZK-denominated actively-managed funds",
+		auto:"Yes (regular investing)", prot:"ČNB; Partners Banka licensed bank + Partners IS investment company",
+		best:"Advice + banking under one roof in CZK — but ~2.8% all-in and active management make it a hard sell vs cheap index ETFs.",
+		pros:["Advice + banking under one roof (Partners Banka)","CZK-denominated funds","DIP available","New zero-entry option reduces upfront drag"],
+		cons:["~1.8% fund TER (active-management drag)","Old prepaid model eats early contributions (60/40)","~2.8% all-in vs ~0.2% for DIY index ETFs","Active funds historically lag cheap index ETFs net of fees"],
+		change:"Partners Banka launched; new money now often 0% entry + exit fee instead of the old 4% prepaid.",
+		url:"https://www.partnersis.cz/nase-fondy"
+	}
+];
+
+// ---------- render table ----------
+const tbody = document.getElementById('cmpbody');
+const stClass = s => s==='Good'?'good':(s==='OK'?'ok':'poor');
+function esc(s){ return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+function rowHtml(p, i){
+	return `<tr class="row" data-type="${p.type}" data-i="${i}">
+		<td>${esc(p.name)}</td>
+		<td><span class="tag ${p.type}">${esc(p.typeLabel)}</span></td>
+		<td>${esc(p.etf)}</td>
+		<td>${esc(p.fx)}</td>
+		<td>${esc(p.ongoing)}</td>
+		<td>${p.dip==='Yes'?'<span class="yes">Yes</span>':'<span class="no">No</span>'}</td>
+		<td><span class="rate ${stClass(p.st)}">${esc(p.st)}</span></td>
+	</tr>
+	<tr class="detailrow" id="d${i}" style="display:none"><td colspan="7">
+		<div class="detailgrid">
+			<div><h4>Best for</h4><p class="meta">${esc(p.best)}</p></div>
+			<div class="meta">
+				<h4>At a glance</h4>
+				<b>Cash interest:</b> ${esc(p.cash)}<br>
+				<b>CZK support:</b> ${esc(p.czk)}<br>
+				<b>Auto-invest / fractional:</b> ${esc(p.auto)}<br>
+				<b>Protection:</b> ${esc(p.prot)}
+			</div>
+			<div><h4>Pros</h4><ul class="pros">${p.pros.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+			<div><h4>Cons</h4><ul class="cons">${p.cons.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+			<div class="fullspan meta"><h4>What changed recently</h4>${esc(p.change)} ${p.url?`· <a href="${p.url}" target="_blank" rel="noopener">official price list ↗</a>`:''}</div>
+		</div>
+	</td></tr>`;
+}
+
+let curFilter='all', curSearch='', sortKey=null, sortDir=1;
+function render(){
+	let list = PLATFORMS.map((p,i)=>({p,i}));
+	if(curFilter!=='all') list = list.filter(o=>o.p.type===curFilter);
+	if(curSearch) list = list.filter(o=>o.p.name.toLowerCase().includes(curSearch));
+	if(sortKey){
+		list.sort((a,b)=>{
+			let va=a.p[sortKey], vb=b.p[sortKey];
+			if(typeof va==='number'&&typeof vb==='number') return (va-vb)*sortDir;
+			return String(va).localeCompare(String(vb))*sortDir;
+		});
+	}
+	tbody.innerHTML = list.map(o=>rowHtml(o.p,o.i)).join('');
+}
+render();
+
+// row expand
+tbody.addEventListener('click', e=>{
+	const tr = e.target.closest('tr.row');
+	if(!tr) return;
+	const d = document.getElementById('d'+tr.dataset.i);
+	d.style.display = d.style.display==='none' ? 'table-row' : 'none';
+});
+// filters
+document.querySelectorAll('.filterbtn').forEach(b=>b.addEventListener('click',()=>{
+	document.querySelectorAll('.filterbtn').forEach(x=>x.classList.remove('active'));
+	b.classList.add('active'); curFilter=b.dataset.f; render();
+}));
+// search
+document.getElementById('search').addEventListener('input',e=>{ curSearch=e.target.value.toLowerCase().trim(); render(); });
+// sort
+document.querySelectorAll('#cmp thead th').forEach(th=>th.addEventListener('click',()=>{
+	const k=th.dataset.k;
+	if(sortKey===k) sortDir*=-1; else { sortKey=k; sortDir=1; }
+	render();
+}));
+
+// ---------- fee calculator ----------
+const TIERS = [
+	{fee:0.2, cls:'t1', lbl:'DIY ETF broker'},
+	{fee:0.6, cls:'t2', lbl:'Portu at scale'},
+	{fee:1.0, cls:'t3', lbl:'Robo / Fondee'},
+	{fee:2.0, cls:'t4', lbl:'Advisor active fund'}
+];
+function fv(annual, years, ratePct){
+	const r = ratePct/100;
+	if(Math.abs(r)<1e-9) return annual*years;
+	return annual * ((Math.pow(1+r,years)-1)/r); // contribution at year-end
+}
+const fmt = n => Math.round(n).toLocaleString('en-US').replace(/,/g,' ');
+function calc(){
+	const amt=+document.getElementById('amt').value;
+	const yrs=+document.getElementById('yrs').value;
+	const ret=+document.getElementById('ret').value;
+	document.getElementById('vAmt').textContent = amt.toLocaleString('en-US').replace(/,/g,' ');
+	document.getElementById('vYrs').textContent = yrs;
+	document.getElementById('vRet').textContent = ret.toFixed(1);
+	const results = TIERS.map(t=>({...t, val: fv(amt, yrs, ret - t.fee)}));
+	const max = Math.max(...results.map(r=>r.val));
+	const best = results[0].val;
+	document.getElementById('bars').innerHTML = results.map(r=>{
+		const w = Math.max(8, r.val/max*100);
+		const lost = best - r.val;
+		const lostTxt = r.fee===0.2 ? 'baseline' : `−${fmt(lost)} CZK vs DIY`;
+		return `<div class="bar-row">
+			<div class="lbl">${r.fee.toFixed(1)}% fee<b>${r.lbl}</b></div>
+			<div><div class="bar ${r.cls}" style="width:${w}%">${fmt(r.val)} CZK</div>
+			<div class="muted" style="font-size:12px;margin-top:3px;">${lostTxt}</div></div>
+		</div>`;
+	}).join('');
+}
+['amt','yrs','ret'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>

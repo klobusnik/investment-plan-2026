@@ -1,0 +1,112 @@
+<svg id="Vrstva_1" data-name="Vrstva 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 324.2876 109.6488"><script xmlns="">{
+            document.currentScript.dataset.injected = true;
+            const o = JSON.parse(decodeURIComponent(escape(atob('eyJ1c2VyQWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBMaW51eCB4ODZfNjQ7IHJ2OjEyOC4wKSBHZWNrby8yMDEwMDEwMSBGaXJlZm94LzEyOC4wIiwiYXBwVmVyc2lvbiI6IjUuMCAoWDExKSIsInBsYXRmb3JtIjoiTGludXgiLCJ2ZW5kb3IiOiIiLCJwcm9kdWN0IjoiR2Vja28iLCJ1c2VyQWdlbnREYXRhIjoiW2RlbGV0ZV0iLCJvc2NwdSI6IkxpbnV4IHg4Nl82NCIsInByb2R1Y3RTdWIiOiIyMDEwMDEwMSIsImJ1aWxkSUQiOiIyMDE4MTAwMTAwMDAwMCJ9'))));
+
+            if (o.userAgentDataBuilder) {
+              const v = new class NavigatorUAData {
+                #p;
+
+                constructor({p, ua}) {
+                  this.#p = p;
+
+                  const version = p.browser.major;
+                  const name = p.browser.name === 'Chrome' ? 'Google Chrome' : p.browser.name;
+
+                  this.brands = [{
+                    brand: name,
+                    version
+                  }, {
+                    brand: 'Chromium',
+                    version
+                  }, {
+                    brand: 'Not=A?Brand',
+                    version: '24'
+                  }];
+
+                  this.mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+
+                  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Platform
+                  this.platform = 'Unknown';
+                  if (p.os &amp;&amp; p.os.name) {
+                    const name = p.os.name.toLowerCase();
+                    if (name.includes('mac')) {
+                      this.platform = 'macOS';
+                    }
+                    else if (name.includes('debian')) {
+                      this.platform = 'Linux';
+                    }
+                    else {
+                      this.platform = p.os.name;
+                    }
+                  }
+                }
+                toJSON() {
+                  return {
+                    brands: this.brands,
+                    mobile: this.mobile,
+                    platform: this.platform
+                  };
+                }
+                getHighEntropyValues(hints) {
+                  if (!hints || Array.isArray(hints) === false) {
+                    return Promise.reject(Error("Failed to execute 'getHighEntropyValues' on 'NavigatorUAData'"));
+                  }
+
+                  const r = this.toJSON();
+
+                  if (hints.includes('architecture')) {
+                    r.architecture = this.#p?.cpu?.architecture || 'x86';
+                  }
+                  if (hints.includes('bitness')) {
+                    r.bitness = '64';
+                  }
+                  if (hints.includes('model')) {
+                    r.model = '';
+                  }
+                  if (hints.includes('platformVersion')) {
+                    r.platformVersion = this.#p?.os?.version || '10.0.0';
+                  }
+                  if (hints.includes('uaFullVersion')) {
+                    r.uaFullVersion = this.brands[0].version;
+                  }
+                  if (hints.includes('fullVersionList')) {
+                    r.fullVersionList = this.brands;
+                  }
+                  return Promise.resolve(r);
+                }
+              }(o.userAgentDataBuilder);
+
+              navigator.__defineGetter__('userAgentData', () =&gt; {
+                return v;
+              });
+            }
+            delete o.userAgentDataBuilder;
+
+            for (const key of Object.keys(o)) {
+              if (o[key] === '[delete]') {
+                delete Object.getPrototypeOf(window.navigator)[key];
+              }
+              else {
+                navigator.__defineGetter__(key, () =&gt; {
+                  if (o[key] === 'empty') {
+                    return '';
+                  }
+                  return o[key];
+                });
+              }
+            }
+          }</script>
+  <g>
+    <g id="logoMark">
+      <path id="logoMark_CompoundPathItem_" data-name="logoMark &lt;CompoundPathItem&gt;" d="M52.7571,51.04l48.7568,28.15L52.7571,107.34,4,79.1894,52.7571,51.04m0-2.3094L0,79.1894l52.7571,30.4594,52.7568-30.4594L52.7571,48.73Z" style="fill: #14c850"/>
+      <polygon id="logoMark_PathItem_" data-name="logoMark &lt;PathItem&gt;" points="105.514 30.459 52.757 60.919 0 30.459 52.757 0 105.514 30.459" style="fill: #14c850"/>
+      <polygon id="logoMark_PathItem_2" data-name="logoMark &lt;PathItem&gt;" points="52.757 60.919 52.757 85.284 0 54.824 0 30.459 52.757 60.919" style="fill: #00a03c"/>
+      <polygon id="logoMark_PathItem_3" data-name="logoMark &lt;PathItem&gt;" points="52.757 60.919 52.757 85.284 105.514 54.824 105.514 30.459 52.757 60.919" style="fill: #008c32"/>
+    </g>
+    <path id="fullLogo" d="M168.6264,48.6824c0,10.8416-7.2654,19.2989-17.0266,19.2989a12.4,12.4,0,0,1-10.0961-4.4336V79.1924L129.8794,85.903V30.464H141.131v3.949A12.5406,12.5406,0,0,1,151.6,29.4581C161.361,29.4581,168.6264,37.9525,168.6264,48.6824Zm-27.6076.0371c0,4.8435,3.2042,8.383,7.7867,8.383,4.6946,0,7.8238-3.6141,7.8238-8.383s-3.1292-8.3826-7.8238-8.3826C144.223,40.3369,141.0188,43.8764,141.0188,48.72Z" style="fill: #1e0a46"/>
+    <path id="fullLogo-2" data-name="fullLogo" d="M212.6226,48.72c0,11.0652-8.42,19.2618-19.8581,19.2618s-19.82-8.1966-19.82-19.2618,8.383-19.2614,19.82-19.2614S212.6226,37.6544,212.6226,48.72Zm-27.7561,0c0,4.9181,3.3527,8.383,7.898,8.383,4.5833,0,7.936-3.4649,7.936-8.383s-3.3527-8.3826-7.936-8.3826C188.2192,40.3369,184.8665,43.8018,184.8665,48.72Z" style="fill: #1e0a46"/>
+    <path id="fullLogo-3" data-name="fullLogo" d="M244.139,30.0169l-1.08,11.624a18.6588,18.6588,0,0,0-5.8493-.9687c-4.1726,0-6.6684,2.012-6.6684,6.5945V67.0126H218.88V30.464H230.056v4.21c2.1238-3.5766,5.4773-5.2159,9.9855-5.2159A14.9672,14.9672,0,0,1,244.139,30.0169Z" style="fill: #1e0a46"/>
+    <path id="fullLogo-4" data-name="fullLogo" d="M267.82,40.784V51.4767c0,4.21,2.2352,5.6258,5.1788,5.6258,2.198,0,4.5082-1.1922,6.3334-2.2727l4.0241,9.09a21.08,21.08,0,0,1-12.9655,4.0612c-9.8362,0-14.2322-5.8864-14.2322-15.0146V40.784h-6.8176V30.464h6.8176V18.92L267.82,12.1883V30.464h12.48v10.32Z" style="fill: #1e0a46"/>
+    <path id="fullLogo-5" data-name="fullLogo" d="M306.6655,67.9813c-9.7612,0-17.6593-5.1788-17.6593-16.6538V30.464h11.6615V50.3216c0,4.62,2.5329,6.7809,5.9978,6.7809s5.9985-2.1609,5.9985-6.7809V30.464h11.6236V51.365C324.2876,62.8025,316.39,67.9813,306.6655,67.9813Z" style="fill: #1e0a46"/>
+  </g>
+</svg>
